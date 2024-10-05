@@ -16,46 +16,133 @@ import TechStacks from "@/app/landing-components/TechStacks";
 import { ethers } from "ethers"; // Correct import for ethers
 import { useRouter } from "next/navigation"; // Next.js navigation
 
+type EthereumProvider = {
+  isMetaMask?: boolean;
+  request: (args: { method: string; params?: any[] }) => Promise<any>;
+  on: (event: string, callback: (accounts: string[]) => void) => void;
+};
+
 const LandingPage = () => {
   const [address, setAddress] = useState<string | null>(null); // State to store connected wallet address
   const [error, setError] = useState<string | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State to control dialog visibility
   const [isCheckingConnection, setIsCheckingConnection] = useState(false); // State to check if connecting
+  const [isWrongNetwork, setIsWrongNetwork] = useState(false);
   const router = useRouter(); // Next.js router for navigation
 
-  // Function to handle MetaMask connection
+  const SCROLL_SEPOLIA_CHAIN_ID = "0x8274f"; // Chain ID for Scroll Sepolia testnet
+
+  const checkWalletConnection = async () => {
+    const ethereum = window.ethereum as EthereumProvider | undefined;
+    if (ethereum) {
+      try {
+        const accounts = await ethereum.request({ method: "eth_accounts" });
+        if (accounts.length > 0) {
+          const provider = new ethers.BrowserProvider(ethereum);
+          const signer = await provider.getSigner();
+          const walletAddress = await signer.getAddress();
+          setAddress(walletAddress);
+
+          // Check if the network is correct
+          const network = await provider.getNetwork();
+          if (
+            network.chainId.toString() !==
+            BigInt(SCROLL_SEPOLIA_CHAIN_ID).toString()
+          ) {
+            setIsWrongNetwork(true);
+          }
+        }
+      } catch (error) {
+        console.error("Error checking wallet connection:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkWalletConnection();
+  }, []);
+
+  const switchToScrollSepolia = async () => {
+    const ethereum = window.ethereum as EthereumProvider | undefined;
+    if (ethereum) {
+      try {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: SCROLL_SEPOLIA_CHAIN_ID }],
+        });
+        setIsWrongNetwork(false);
+      } catch (switchError: any) {
+        if (switchError.code === 4902) {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: SCROLL_SEPOLIA_CHAIN_ID,
+                  chainName: "Scroll Sepolia",
+                  nativeCurrency: {
+                    name: "Ethereum",
+                    symbol: "ETH",
+                    decimals: 18,
+                  },
+                  rpcUrls: ["https://sepolia-rpc.scroll.io/"],
+                  blockExplorerUrls: ["https://sepolia-blockscout.scroll.io/"],
+                },
+              ],
+            });
+            setIsWrongNetwork(false);
+          } catch (addError) {
+            console.error("Error adding Scroll Sepolia network", addError);
+            setError("Failed to add Scroll Sepolia network");
+          }
+        } else {
+          console.error(
+            "Error switching to Scroll Sepolia network:",
+            switchError
+          );
+          setError("Failed to switch network");
+        }
+      }
+    }
+  };
+
   const connectWallet = async () => {
-    if (typeof window.ethereum !== "undefined") {
+    const ethereum = window.ethereum as EthereumProvider | undefined;
+    if (ethereum) {
       try {
         console.log("Ethereum object found");
 
-        // Request account access if needed
-        const accounts = await window.ethereum.request({
+        const accounts = await ethereum.request({
           method: "eth_requestAccounts",
         });
         if (accounts.length === 0) {
           throw new Error("No accounts found.");
         }
 
-        // Create ethers provider and signer
-        const provider = new ethers.BrowserProvider(window.ethereum);
+        const provider = new ethers.BrowserProvider(ethereum);
+        const network = await provider.getNetwork();
+
+        if (
+          network.chainId.toString() !==
+          BigInt(SCROLL_SEPOLIA_CHAIN_ID).toString()
+        ) {
+          setIsWrongNetwork(true);
+          await switchToScrollSepolia();
+        }
+
         const signer = await provider.getSigner();
         const walletAddress = await signer.getAddress();
 
-        // Log the address and store it in sessionStorage
         console.log("Wallet address:", walletAddress);
-        sessionStorage.setItem("walletAddress", walletAddress); // Store in sessionStorage
-        sessionStorage.setItem("hasConnected", "true"); // Store the connect status
-        setAddress(walletAddress); // Set state
-
-        // Clear any previous errors
+        sessionStorage.setItem("walletAddress", walletAddress);
+        sessionStorage.setItem("hasConnected", "true");
+        setAddress(walletAddress);
         setError(null);
       } catch (err) {
         setError("Failed to connect wallet");
         console.error("Error connecting to wallet:", err);
       }
     } else {
-      // MetaMask not installed
       setIsDialogOpen(true);
       setError("MetaMask is not installed");
       console.log("MetaMask not found");
@@ -156,7 +243,12 @@ const LandingPage = () => {
             <br />
             <span className="text-white">IS HERE.</span>
           </h2>
-          <a href="https://github.com/kens1ang/AIGuardian/tree/master" className="bg-orange-300 text-black px-4 py-4 rounded-sm hover:underline w-fit mt-10 font-neue-machina font-light justify-end">View on Github</a>
+          <a
+            href="https://github.com/kens1ang/AIGuardian/tree/master"
+            className="bg-orange-300 text-black px-4 py-4 rounded-sm hover:underline w-fit mt-10 font-neue-machina font-light justify-end"
+          >
+            View on Github
+          </a>
         </section>
 
         {/* Your main content */}
@@ -194,7 +286,9 @@ const LandingPage = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="font-neue-machina">MetaMask Not Connected</DialogTitle>
+            <DialogTitle className="font-neue-machina">
+              MetaMask Not Connected
+            </DialogTitle>
             <DialogDescription className="font-neue-machina font-light">
               Please connect MetaMask to access the demo.
             </DialogDescription>
@@ -207,6 +301,27 @@ const LandingPage = () => {
           </Button>
         </DialogContent>
       </Dialog>
+
+      {isWrongNetwork && (
+        <Dialog open={isWrongNetwork} onOpenChange={setIsWrongNetwork}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="font-neue-machina">
+                Wrong Network
+              </DialogTitle>
+              <DialogDescription className="font-neue-machina font-light">
+                Please switch to the Scroll Sepolia testnet to continue.
+              </DialogDescription>
+            </DialogHeader>
+            <Button
+              onClick={switchToScrollSepolia}
+              className="bg-orange-300 text-black mt-4 hover:font-bold hover:bg-orange-400 font-neue-machina font-light"
+            >
+              Switch Network
+            </Button>
+          </DialogContent>
+        </Dialog>
+      )}
 
       {error && <div className="text-red-500 text-center">{error}</div>}
     </div>
