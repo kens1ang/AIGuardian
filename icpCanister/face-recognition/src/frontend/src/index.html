@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICP Deepfake Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; max-width: 600px; margin: 0 auto; padding: 20px; }
+        #image { max-width: 100%; margin-top: 20px; }
+        #message { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>ICP Deepfake Detection</h1>
+    <input type="file" id="file" accept="image/png, image/jpeg" />
+    <button id="checkDeepfake">Check for Deepfake</button>
+    <div>
+        <img id="image" src="logo_transparent.png" alt="Uploaded image" />
+    </div>
+    <div id="message"></div>
+    <script src="index.js"></script>
+</body>
+</html>

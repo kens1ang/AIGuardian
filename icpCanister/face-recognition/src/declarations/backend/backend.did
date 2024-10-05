@@ -1,0 +1,51 @@
+type BoundingBox = record {
+    x : float32;
+    y : float32;
+    width : float32;
+    height : float32;
+};
+
+type Embedding = vec float32;
+
+type Person = record {
+    name : text;
+    distance : float32;
+};
+
+type Error = record {
+    message : text;
+};
+
+type Detection = variant {
+    Ok : BoundingBox;
+    Err : Error;
+};
+
+type Addition = variant {
+    Ok : Embedding;
+    Err : Error;
+};
+
+type Recognition = variant {
+    Ok : Person;
+    Err : Error;
+};
+
+type DeepfakeDetection = variant {
+    Ok : bool;
+    Err : Error;
+};
+
+service : {
+    detect : (vec nat8) -> (Detection) query;
+    recognize : (vec nat8) -> (Recognition);
+    add : (text, vec nat8) -> (Addition);
+    check_deepfake : (vec nat8) -> (DeepfakeDetection);
+    clear_face_detection_model_bytes : () -> ();
+    clear_face_recognition_model_bytes : () -> ();
+    clear_deepfake_detection_model_bytes : () -> ();
+    append_face_detection_model_bytes : (vec nat8) -> ();
+    append_face_recognition_model_bytes : (vec nat8) -> ();
+    append_deepfake_detection_model_bytes : (vec nat8) -> ();
+    setup_models : () -> (variant { Ok : null; Err : text });
+}
