@@ -1,4 +1,4 @@
-export const deepfakestorageAddress = '0x2a662D2Fa3553C2849151b44Ea3fe2Ec3579f1f7';
+export const deepfakestorageAddress = '0x0521D794F9bdeEdE71D2B6EF749da7d393a9a7aB';
 export const deepfakestorageABI = [
 	{
 		"anonymous": false,
