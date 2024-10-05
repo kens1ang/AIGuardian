@@ -1,16 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 const AIEngineSection = () => {
   const video1Ref = useRef<HTMLVideoElement>(null);
   const video2Ref = useRef<HTMLVideoElement>(null);
-  const [activeVideoSrc, setActiveVideoSrc] = useState<string | null>(null); // State to track which video is active
+  const [activeVideoSrc, setActiveVideoSrc] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false); // State to track client-side rendering
+
+  useEffect(() => {
+    setIsClient(true); // Update the state to indicate that we are in the client environment
+  }, []);
 
   const handleVideoClick = (videoSrc: string) => {
-    setActiveVideoSrc(videoSrc); // Set the clicked video source to open in the modal
+    setActiveVideoSrc(videoSrc);
   };
 
   const handleCloseModal = () => {
-    setActiveVideoSrc(null); // Close the modal by setting active video to null
+    setActiveVideoSrc(null);
   };
 
   return (
@@ -21,20 +26,22 @@ const AIEngineSection = () => {
           <div className="w-1/2 pr-8">
             <h3 className="text-4xl mb-4 font-neue-machina font-light uppercase">Creating a safe environment online.</h3>
             <p className="mb-4 font-light font-neue-machina">
-              Leveraging the power of Worldcoin's WLD token, we can detect and cancel out bots and non organic users. Enable your users to feel safe and secure when using your application.
+              Leveraging the power of Worldcoin's WLD token, we can detect and cancel out bots and non-organic users. Enable your users to feel safe and secure when using your application.
             </p>
           </div>
           <div className="w-1/2">
             <div className="bg-gray-800 p-4 rounded-lg cursor-pointer" onClick={() => handleVideoClick("/assets/videos/vid1.mp4")}>
               <div className="h-64 bg-gray-700 rounded-lg border-2 border-gray-400 border-dashed">
-                <video
-                  ref={video1Ref}
-                  src="/assets/videos/vid1.mp4"
-                  className="w-full h-full object-cover p-4"
-                  autoPlay
-                  loop
-                  muted
-                />
+                {isClient && (
+                  <video
+                    ref={video1Ref}
+                    src="/assets/videos/vid1.mp4"
+                    className="w-full h-full object-cover p-4"
+                    autoPlay
+                    loop
+                    muted
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -50,14 +57,16 @@ const AIEngineSection = () => {
           <div className="w-1/2">
             <div className="bg-gray-800 p-4 rounded-lg cursor-pointer" onClick={() => handleVideoClick("/assets/videos/vid2.mp4")}>
               <div className="h-64 bg-gray-700 rounded-lg border-2 border-gray-400 border-dashed">
-                <video
-                  ref={video2Ref}
-                  src="/assets/videos/vid2.mp4"
-                  className="w-full h-full object-cover p-4"
-                  autoPlay
-                  loop
-                  muted
-                />
+                {isClient && (
+                  <video
+                    ref={video2Ref}
+                    src="/assets/videos/vid2.mp4"
+                    className="w-full h-full object-cover p-4"
+                    autoPlay
+                    loop
+                    muted
+                  />
+                )}
               </div>
             </div>
           </div>
