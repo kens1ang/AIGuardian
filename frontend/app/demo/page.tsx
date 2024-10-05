@@ -74,10 +74,10 @@ export default function Home() {
   const [postImageHash, setPostImageHash] = useState<string>("");
 
   const imageOptions = [
-    { name: "realImage1.jpg", path: "/assets/images/real1.jpeg" },
-    { name: "fakeImage1.jpg", path: "/assets/images/real1.jpeg" },
-    { name: "realImage2.jpg", path: "/assets/images/real2.jpg" },
-    { name: "fakeImage2.jpg", path: "/assets/images/real2.jpg" },
+    { name: "Image1.jpg", path: "/assets/images/real.jpg" },
+    { name: "Image2.jpg", path: "/assets/images/fake.jpg" },
+    { name: "Image3.jpg", path: "/assets/images/real2.jpg" },
+    { name: "Image4.jpg", path: "/assets/images/real2.jpg" },
   ];
 
   const fetchPosts = async () => {
@@ -623,7 +623,7 @@ export default function Home() {
             tweets.map((tweet, index) => (
               <div
                 key={index}
-                className="bg-black border-b-2 border-gray-700 shadow-md w-full"
+                className="bg-black border-b-2 border-gray-700 shadow-md max-w-[750px]"
               >
                 <div className="flex items-center p-4">
                   <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-r from-indigo-500 via-pink-300 to-orange-300">
