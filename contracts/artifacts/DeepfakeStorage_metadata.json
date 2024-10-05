@@ -1,0 +1,127 @@
+{
+	"compiler": {
+		"version": "0.8.27+commit.40a35a09"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "imageHash",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "deepfakeValue",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "ImageAdded",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_imageHash",
+						"type": "string"
+					}
+				],
+				"name": "getDeepfakeValue",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_imageHash",
+						"type": "string"
+					}
+				],
+				"name": "getImageTimeStamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_imageHash",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_deepfakeValue",
+						"type": "uint8"
+					}
+				],
+				"name": "storeImage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETHKL/deepfakestorage.sol": "DeepfakeStorage"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETHKL/deepfakestorage.sol": {
+			"keccak256": "0x92411e750fe4882b3cfec24d7a2672e7135be783977d087b25680cbb48f91504",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e85c42917ed14d62d33db919d0d19000e3f80a999190baee0d9a9cd72bd655f8",
+				"dweb:/ipfs/QmYMM8YHBn25BAyUf8ECdzVbnCFVBAY9xShoKJvt69GyEK"
+			]
+		}
+	},
+	"version": 1
+}
