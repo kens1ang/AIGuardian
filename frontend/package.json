@@ -30,7 +30,10 @@
     "react-dom": "^18",
     "react-toastify": "^10.0.5",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "@dfinity/agent": "^2.1.2",
+    "@dfinity/candid": "^2.1.2",
+    "@dfinity/principal": "^2.1.2"
   },
   "devDependencies": {
     "@types/node": "^20",

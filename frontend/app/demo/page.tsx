@@ -38,6 +38,7 @@ import {
   PopoverContent,
 } from "@/app/landing-components/ui/popover";
 import { Badge } from "@/app/landing-components/ui/badge";
+import { backend } from "../../cannister/ic-agent";
 
 interface Tweet {
   postId: string;
@@ -56,6 +57,8 @@ interface ImageOption {
   path: string;
 }
 
+type DeepfakeDetection = { Ok: boolean } | { Err: { message: string } };
+
 export default function Home() {
   const { address, signer, connectWallet } = useWallet();
   const [isFetching, setIsFetching] = useState(false);
@@ -72,13 +75,42 @@ export default function Home() {
     null
   );
   const [postImageHash, setPostImageHash] = useState<string>("");
+  const [image, setImage] = useState<File | null>(null);
+  const [result, setResult] = useState<string | null>(null);
 
   const imageOptions = [
-    { name: "realImage1.jpg", path: "/assets/images/real1.jpeg" },
-    { name: "fakeImage1.jpg", path: "/assets/images/real1.jpeg" },
-    { name: "realImage2.jpg", path: "/assets/images/real2.jpg" },
-    { name: "fakeImage2.jpg", path: "/assets/images/real2.jpg" },
+    { name: "realImage1.jpg", path: "/assets/no-bookmarks.png" },
+    { name: "fakeImage1.jpg", path: "/assets/no-followers.png" },
+    { name: "realImage2.jpg", path: "/assets/no-likes.png" },
+    { name: "fakeImage2.jpg", path: "/assets/no-media.png" },
   ];
+
+  const checkDeepfake: (
+    uint8Array: Uint8Array
+  ) => Promise<number | void> = async (uint8Array: Uint8Array) => {
+    try {
+      // Call the backend canister function with the uint8Array
+      const rawResponse = await backend.check_deepfake(Array.from(uint8Array));
+      const response = rawResponse as DeepfakeDetection; // Explicitly cast the response
+      if ("Ok" in response) {
+        console.log(
+          `Deepfake detection result: ${
+            response.Ok ? "Deepfake detected" : "Not a deepfake"
+          }`
+        );
+        if (response.Ok) {
+          return 1;
+        } else {
+          return 2;
+        }
+      } else {
+        throw new Error(response.Err.message);
+      }
+    } catch (error) {
+      console.error("Error calling backend:", error);
+      setResult("Error calling backend");
+    }
+  };
 
   const fetchPosts = async () => {
     try {
@@ -413,20 +445,13 @@ export default function Home() {
     }
   };
 
-  const handleTweetSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    prepareImageForBlockchain();
+  }, [deepfakeValue]);
+  let ipfsHash = "";
+  let imageHash = "";
 
-    setPostLoading(true);
-
-    const currentdeepfakevalue = 1;
-
-    if (!currentdeepfakevalue) {
-      toast.error("Please select an option for the image type.");
-      return;
-    }
-
-    let ipfsHash = "";
-    let imageHash = "";
+  const prepareImageForBlockchain = async () => {
     if (imageFile) {
       try {
         imageHash = await generateHash(imageFile);
@@ -441,7 +466,7 @@ export default function Home() {
         console.log("Is Image Verified:", isVerified);
 
         if (!isVerified) {
-          await storeDeepfakeVerification(imageHash, currentdeepfakevalue);
+          await storeDeepfakeVerification(imageHash, deepfakeValue);
         } else {
           toast.info("Image has already been verified, skipping verification.");
         }
@@ -465,16 +490,37 @@ export default function Home() {
     }
   };
 
+  const handleTweetSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setPostLoading(true);
+    // call checkDeepfake function, use image
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        try {
+          const arrayBuffer = reader.result as ArrayBuffer;
+          const uint8Array = new Uint8Array(arrayBuffer);
+          const result = await checkDeepfake(uint8Array);
+          setDeepfakeValue(result !== undefined ? result : 0);
+        } catch (error) {
+          console.error("Error converting image file:", error);
+        }
+      };
+      reader.readAsArrayBuffer(imageFile);
+    }
+    // this is the dummy value
+    // const currentdeepfakevalue = 1;
+  };
+
   const resetForm = () => {
     setImageFile(null);
     setImagePreview(null);
     setNewTweet("");
-    setDeepfakeValue(1);
   };
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-nowrap">
-      <LeftSidebar />
+      {/* <LeftSidebar /> */}
 
       <div className="flex-grow">
         <div className="bg-black p-4 pt-0 border-y-2 border-gray-700 w-full">

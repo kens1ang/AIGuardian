@@ -15,7 +15,7 @@ const AIEngineSection = () => {
           <div className="bg-gray-800 p-4 rounded-lg">
             {/* Placeholder for code visualization */}
             <div className="h-64 bg-gray-700 rounded-lg border-2 border-gray-400 border-dashed">
-              <video src="/assets/videos/vid1.mp4" className="w-full h-full object-cover p-4" autoPlay loop muted />
+              <video src="/assets/videos/vid1.mp4" className="w-full h-full object-cover p-4" autoPlay loop muted ></video>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@ const AIEngineSection = () => {
           <div className="bg-gray-800 p-4 rounded-lg">
             {/* Placeholder for code visualization */}
             <div className="h-64 bg-gray-700 rounded-lg border-2 border-gray-400 border-dashed">
-              <video src="/assets/videos/vid2.mp4" className="w-full h-full object-cover p-4" autoPlay loop muted />
+              <video src="/assets/videos/vid2.mp4" className="w-full h-full object-cover p-4" autoPlay loop muted ></video>
             </div>
           </div>
         </div>
