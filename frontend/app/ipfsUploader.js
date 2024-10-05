@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const pinataApiKey = 'b1361df614521104e4ab';
-const pinataSecretApiKey = '4183cb1e5276ba655b5174520a224bdc6b2f40b0a9e19a6fc4bfbc39ccddebf6';
+const pinataApiKey = process.env.NEXT_PUBLIC_PINATA_API_KEY;
+const pinataSecretApiKey = process.env.NEXT_PUBLIC_PINATA_SECRET_API_KEY;
 
 // Function to upload an image file to IPFS using Pinata
 export const uploadImageToIPFS = async (file) => {

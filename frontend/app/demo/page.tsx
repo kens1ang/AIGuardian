@@ -4,26 +4,8 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useWallet } from "../WalletContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFilm,
-  faSmile,
-  faPoll,
-  faMapMarkerAlt,
-  faCalendarAlt,
-  faBold,
-  faComment,
-  faRetweet,
-  faHeart,
-  faExclamationTriangle,
-  faVideo,
   faTrashAlt,
   faBan,
-  faImage,
-  faX,
-  faExclamation,
-  faExclamationCircle,
-  faCheckCircle,
-  faWarning,
-  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import { Contract } from "ethers";
@@ -153,9 +135,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Check if walletAddress and worldId exist in localStorage
-    const storedWalletAddress = localStorage.getItem("walletAddress");
-    const storedWorldId = localStorage.getItem("worldId");
+    // Check if walletAddress and worldId exist in sessionStorage
+    const storedWalletAddress = sessionStorage.getItem("walletAddress");
+    const storedWorldId = sessionStorage.getItem("worldId");
 
     // If walletAddress and worldId exist, trigger wallet connection and auto-fetch posts
     if (storedWalletAddress && storedWorldId) {
@@ -288,7 +270,7 @@ export default function Home() {
         return;
       }
 
-      const storedWorldId = localStorage.getItem("worldId");
+      const storedWorldId = sessionStorage.getItem("worldId");
 
       if (!storedWorldId) {
         toast.error("World ID not found. Please sign in with World ID first.");
