@@ -31,6 +31,8 @@ By leveraging blockchain technology for tamper-proof verification and multichain
 The unique combination of on-chain AI-powered deepfake detection and originality verification ensures that:
 
 - Personal Integrity is Protected: Deepfake detection allows individuals to safeguard their reputation through tagging manipulated images in real-time.
+
+- Sybil Resistance: World ID verification prevents Sybil attacks, where a user creates multiple fake identities. This ensures that a single verified individual cannot create multiple accounts to upload misleading content.
   
 - Transparency is Guaranteed: Once deepfake or originality checks are performed, the results are stored immutably on the blockchain, providing an unalterable record.
   
