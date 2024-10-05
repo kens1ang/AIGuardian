@@ -76,12 +76,13 @@ export default function Home() {
     null
   );
   const [postImageHash, setPostImageHash] = useState<string>("");
+  const [tweetIpfsHash, setTweetIpfsHash] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
   const [result, setResult] = useState<string | null>(null);
 
   const imageOptions = [
-    { name: "realImage1.jpg", path: "/assets/no-bookmarks.png" },
-    { name: "fakeImage1.jpg", path: "/assets/no-followers.png" },
+    { name: "obama1.png", path: "/assets/obama1.png" },
+    { name: "obama2.png", path: "/assets/obama2.png" },
     { name: "realImage2.jpg", path: "/assets/no-likes.png" },
     { name: "fakeImage2.jpg", path: "/assets/no-media.png" },
   ];
@@ -361,7 +362,10 @@ export default function Home() {
     }
   };
 
-  const handleReportSubmit = async (tweet: { imageHash: string }) => {
+  const handleReportSubmit = async (tweet: {
+    imageHash: string;
+    tweetIpfsHash: string;
+  }) => {
     try {
       setReportLoading(true);
       let imageHash = "";
@@ -377,19 +381,44 @@ export default function Home() {
 
       const postImageTimestamp = await getImageTimeStamp(tweet.imageHash);
       const originalImageTimestamp = await getImageTimeStamp(imageHash);
-      const currentSimilarity = 99;
+
+      let isSimilar = false;
+      // Download the image from tweetIpfsHash URL and convert it to a File object
+      const tweetIpfsImage = await fetch(tweet.tweetIpfsHash);
+      if (!tweetIpfsImage.ok) {
+        throw new Error("Failed to download tweet image.");
+      }
+      const blob = await tweetIpfsImage.blob();
+      const tweetImageFile = new File([blob], "tweetImage.jpg", {
+        type: blob.type,
+      });
+      const formData = new FormData();
+      formData.append("files", tweetImageFile); // Add tweet image URL
+      formData.append("files", reportImageFile); // Add fetched report image file
+      // fetch prediction from backend using api
+      const response = await fetch(
+        "http://84.247.151.195:8002/predict-similarity",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      if (data.prediction == "similar") {
+        isSimilar = true;
+      } else {
+        isSimilar = false;
+      }
+
       console.log(
-        "Current Similarity:",
-        currentSimilarity,
+        "Is similar:",
+        isSimilar,
         postImageTimestamp,
         originalImageTimestamp
       );
 
       if (postImageTimestamp && originalImageTimestamp) {
-        if (
-          originalImageTimestamp <= postImageTimestamp &&
-          currentSimilarity > 96
-        ) {
+        if (originalImageTimestamp <= postImageTimestamp && isSimilar) {
           await storeOriginalityOnBlockchain(tweet.imageHash, true);
           setNotOriginal(true);
           toast.success("The reported image is flagged as not original.");
@@ -522,7 +551,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-nowrap">
-      {/* <LeftSidebar /> */}
+      <LeftSidebar />
 
       <div className="flex-grow">
         <div className="bg-black p-4 pt-0 border-y-2 border-gray-700 w-full">
@@ -791,8 +820,10 @@ export default function Home() {
                               ? "hover:text-yellow-600 cursor-pointer"
                               : "cursor-not-allowed opacity-50"
                           }`}
-                          onClick={() => setPostImageHash(tweet.imageHash)}
-                          disabled={tweet.originality === true}
+                          onClick={() => {
+                            setPostImageHash(tweet.imageHash);
+                            setTweetIpfsHash(tweet.ipfsHash);
+                          }}
                         >
                           <ReportIcon className="h-6 w-6" />
                         </button>
@@ -856,7 +887,10 @@ export default function Home() {
                             disabled={reportLoading}
                             onClick={(e) => {
                               e.preventDefault();
-                              handleReportSubmit({ imageHash: postImageHash });
+                              handleReportSubmit({
+                                imageHash: postImageHash,
+                                tweetIpfsHash: tweet.ipfsHash,
+                              });
                             }}
                             className={`relative font-bold text-center py-2 px-4 rounded-full overflow-hidden flex items-center justify-center ${
                               reportLoading
