@@ -69,7 +69,7 @@ const LeftSidebar = () => {
                 <Link
                   href={link.href}
                   key={link.href}
-                  className="flex gap-2 text-center text-xl font-bold text-slate-200 hover:bg-gray-700 p-2 rounded-lg"
+                  className="flex gap-2 text-center text-xl font-bold text-slate-200 hover:bg-gray-700 p-2 rounded-3xl"
                 >
                   {link.icon}
                   {link.linkName}
