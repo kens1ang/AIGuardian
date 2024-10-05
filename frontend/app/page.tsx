@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/landing-components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog"; // Import Dialog components
-import AIEngineSection from "@/components/AIEngineSection";
-import MonitoringSection from "@/components/MonitoringSection";
-import ActionSteps from "@/components/ActionSteps";
-import TechStacks from "@/components/TechStacks";
+} from "@/app/landing-components/ui/dialog"; // Import Dialog components
+import AIEngineSection from "@/app/landing-components/AIEngineSection";
+import MonitoringSection from "@/app/landing-components/MonitoringSection";
+import ActionSteps from "@/app/landing-components/ActionSteps";
+import TechStacks from "@/app/landing-components/TechStacks";
 import { ethers } from "ethers"; // Correct import for ethers
 import { useRouter } from "next/navigation"; // Next.js navigation
 

@@ -14,7 +14,7 @@ export default function Login() {
     try {
       const res = await signIn("worldcoin", {
         redirect: false,
-        callbackUrl: "http://localhost:3000/twitter",
+        callbackUrl: "http://localhost:3000/demo",
       });
 
       if (res?.error) {
