@@ -42,10 +42,10 @@ const LandingPage = () => {
         const signer = await provider.getSigner();
         const walletAddress = await signer.getAddress();
 
-        // Log the address and store it in localStorage
+        // Log the address and store it in sessionStorage
         console.log("Wallet address:", walletAddress);
-        localStorage.setItem("walletAddress", walletAddress); // Store in localStorage
-        localStorage.setItem("hasConnected", "true"); // Store the connect status
+        sessionStorage.setItem("walletAddress", walletAddress); // Store in sessionStorage
+        sessionStorage.setItem("hasConnected", "true"); // Store the connect status
         setAddress(walletAddress); // Set state
 
         // Clear any previous errors
@@ -81,8 +81,8 @@ const LandingPage = () => {
     const isConnected = await checkMetaMaskConnection();
     setIsCheckingConnection(false);
 
-    // Check if the user clicked the "Connect" button by checking localStorage
-    const hasConnected = localStorage.getItem("hasConnected");
+    // Check if the user clicked the "Connect" button by checking sessionStorage
+    const hasConnected = sessionStorage.getItem("hasConnected");
 
     if (!isConnected || !hasConnected) {
       setIsDialogOpen(true); // Open the dialog prompting the user to connect MetaMask
@@ -95,17 +95,17 @@ const LandingPage = () => {
   useEffect(() => {
     const checkConnection = async () => {
       const isConnected = await checkMetaMaskConnection(); // Check MetaMask connection
-      const savedAddress = localStorage.getItem("walletAddress");
+      const savedAddress = sessionStorage.getItem("walletAddress");
 
       if (isConnected && !savedAddress) {
         // If MetaMask is connected but address is not stored, fetch and display it
         connectWallet();
       } else if (savedAddress && isConnected) {
-        // If already stored in localStorage and connected
+        // If already stored in sessionStorage and connected
         setAddress(savedAddress);
       } else {
         // Remove wallet address if disconnected
-        localStorage.removeItem("walletAddress");
+        sessionStorage.removeItem("walletAddress");
         setAddress(null);
       }
     };

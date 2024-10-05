@@ -1,3 +1,5 @@
+import { PlusIcon } from '../ui/heroicon';
+
 export function SuggestWidget(): JSX.Element {
   return (
     <div className="rounded-2xl bg-[rgb(32,35,39)] p-4 flex flex-col">
@@ -15,6 +17,10 @@ export function SuggestWidget(): JSX.Element {
           <p className="text-sm text-gray-500">
               @0x2c50...6489
             </p>
+        </div>
+        <div className="text-blue-500 flex font-bold gap-2 ml-12">
+          <PlusIcon className="w-6 h-6" />
+          <span>Follow</span>
         </div>
       </div>
       <div className="flex justify-center text-center text-blue-400 mt-4">

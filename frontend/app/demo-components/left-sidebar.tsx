@@ -16,7 +16,7 @@ export type NavLink = {
 
 const navLinks: Readonly<NavLink[]> = [
   {
-    href: "/",
+    href: "/demo",
     linkName: "Home",
     icon: <HouseIcon className="h-16 w-16" />,
   },
