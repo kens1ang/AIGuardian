@@ -53,7 +53,7 @@ const ActionSteps = () => {
             </div>
         </div>
         <div className="flex justify-end col-span-1 mb-10"></div>
-        <a href="#" className="bg-orange-300 text-black px-8 py-4 rounded-sm hover:underline w-fit mt-10">Try it now</a>
+        <a href="#" className="bg-orange-300 text-black px-4 py-4 rounded-sm hover:underline w-fit mt-10 font-neue-machina font-light">Try it now</a>
     </div>
    
 

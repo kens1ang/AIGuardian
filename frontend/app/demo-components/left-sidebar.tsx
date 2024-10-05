@@ -25,7 +25,7 @@ const navLinks: Readonly<NavLink[]> = [
     linkName: "Explore",
     icon: <ExploreIcon className="h-16 w-16" />,
   },
-  { href: "https://github.com/kens1ang/AIGuardian", linkName: "GitHub", icon: <GithubIcon className="h-16 w-16" /> },
+  { href: "https://github.com/kens1ang/AIGuardian/tree/master", linkName: "GitHub", icon: <GithubIcon className="h-16 w-16" /> },
   {
     href: "/#how",
     linkName: "How It Works",

@@ -618,7 +618,7 @@ export default function Home() {
 
         <div>
           {tweets.length === 0 ? (
-            <p className="text-center text-gray-400">No posts yet.</p>
+            <p className="text-center text-gray-400 font-neue-machina font-light pt-12">No posts yet.</p>
           ) : (
             tweets.map((tweet, index) => (
               <div
