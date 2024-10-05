@@ -1,9 +1,9 @@
 const footerLinks = [
-    ['Terms of Service', ''],
-    ['Privacy Policy', ''],
-    ['Cookie Policy', ''],
-    ['Accessibility', ''],
-    ['Ads Info', '']
+    ['Terms of Service', '/'],
+    ['Privacy Policy', '/'],
+    ['Cookie Policy', '/'],
+    ['Accessibility', '/'],
+    ['Ads Info', '/']
   ] as const;
   
   export function RightFooter(): JSX.Element {
