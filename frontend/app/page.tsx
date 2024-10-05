@@ -15,6 +15,7 @@ import ActionSteps from "@/app/landing-components/ActionSteps";
 import TechStacks from "@/app/landing-components/TechStacks";
 import { ethers } from "ethers"; // Correct import for ethers
 import { useRouter } from "next/navigation"; // Next.js navigation
+import { Toaster } from "react-hot-toast"; 
 
 type EthereumProvider = {
   isMetaMask?: boolean;
@@ -202,6 +203,7 @@ const LandingPage = () => {
 
   return (
     <div className="bg-black text-white min-h-screen">
+      <Toaster />
       <header className="px-4 py-6 border-b-2 border-dashed border-gray-400 sticky top-0 bg-black">
         <nav className="flex justify-between items-center max-w-[1700px] mx-auto">
           <h1 className="text-3xl font-light font-neue-machina">AIGuardian</h1>

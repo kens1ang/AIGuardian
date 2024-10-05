@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dfinity/agent": "^2.1.2",
+    "@dfinity/candid": "^2.1.2",
+    "@dfinity/principal": "^2.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@heroicons/react": "^2.1.5",
@@ -28,12 +31,10 @@
     "next-auth": "^4.24.8",
     "react": "^18",
     "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
     "react-toastify": "^10.0.5",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7",
-    "@dfinity/agent": "^2.1.2",
-    "@dfinity/candid": "^2.1.2",
-    "@dfinity/principal": "^2.1.2"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",

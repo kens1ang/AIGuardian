@@ -16,6 +16,7 @@ import { uploadImageToIPFS } from "../ipfsUploader";
 import "react-toastify/dist/ReactToastify.css";
 import LeftSidebar from "../demo-components/left-sidebar";
 import RightSidebar from "../demo-components/right-sidebar";
+import { Toaster } from 'react-hot-toast';
 import {
   ImageIcon,
   GifIcon,
@@ -502,6 +503,7 @@ export default function Home() {
           const uint8Array = new Uint8Array(arrayBuffer);
           const result = await checkDeepfake(uint8Array);
           setDeepfakeValue(result !== undefined ? result : 0);
+          toast.success(result === 1 ? "Deepfake detected!" : "Authentic image!");
         } catch (error) {
           console.error("Error converting image file:", error);
         }
