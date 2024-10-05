@@ -11,18 +11,19 @@
 - [twitterpost.sol](https://sepolia.etherscan.io/address/0x69668FF363fFA1D0832654748158165a0cD42615): `0x69668FF363fFA1D0832654748158165a0cD42615`
 
 ## Smart Contract Functions
-### originality.sol
-- Stores the image hash along with its originality status. The _originality parameter is a boolean indicating whether the image is original (true) or not (false).
-- Retrieves the originality status (true or false) for a given image hash.
-
+### deepfakestorage.sol
+- Stores the image hash along with a deepfake value fed from the on-chain AI model for deepfake image detection with the current timestamp for verification.
+- Retrieves the deepfake value associated with a given image hash.
+- Retrieves the timestamp indicating when the image was stored and verified on the blockchain.
+  
 ### twitterpost.sol
-- Creates a new post with the provided IPFS hash, image hash, content, and the user's world ID. The post also records the current timestamp.
+- Creates a new social media post with the provided IPFS hash, image hash, content, and the user's world ID. The post also records the current timestamp.
 - Fetches the details of a post using its post ID. The post structure includes IPFS hash, image hash, content, user address, world ID, and timestamp.
 - Returns all posts in descending order based on their timestamps.
 
-### deepfakestorage.sol
-- Stores the image hash along with a deepfake value (1, 2, or 3, indicating different levels of deepfake detection) and the current timestamp.
-- Retrieves the deepfake value associated with a given image hash.
-- Retrieves the timestamp indicating when the image was stored on the blockchain.
+### originality.sol
+- Stores the image hash along with its originality status to verify that the image is first posted by the creator. The _originality parameter is a boolean indicating whether the image is original (true) or not (false).
+- Retrieves the originality status (true or false) for a given image hash.
+
 
 
