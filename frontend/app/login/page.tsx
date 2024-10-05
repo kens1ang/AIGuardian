@@ -71,10 +71,10 @@ export default function Login() {
 
         {/* Right side: Login form */}
         <div className="flex-1 flex flex-col items-center justify-center text-white">
-          <h1 className="text-center text-7xl font-extrabold mb-8" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          <h1 className="text-center text-7xl font-extrabold mb-8 font-neue-machina" >
             Happening now
           </h1>
-          <p className="text-4xl font-bold mb-12" style={{ fontFamily: "'Roboto', sans-serif" }}>
+          <p className="text-4xl font-bold mb-12 font-neue-machina font-light">
             Join today.
           </p>
           
@@ -84,7 +84,7 @@ export default function Login() {
             onClick={handleLogin}
             className="relative bg-white font-bold py-2 px-4 rounded-full w-72 overflow-hidden group"
           >
-            <span className="relative z-10 bg-gradient-to-r from-indigo-500 via-pink-300 to-orange-300 text-transparent bg-clip-text group-hover:text-white transition-colors duration-500">
+            <span className="relative z-10 bg-gradient-to-r from-indigo-500 via-pink-300 to-orange-300 text-transparent bg-clip-text font-neue-machina font-bold group-hover:text-white transition-colors duration-500">
               Sign Up with WorldCoin
             </span>
             

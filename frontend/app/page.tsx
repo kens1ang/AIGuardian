@@ -156,6 +156,7 @@ const LandingPage = () => {
             <br />
             <span className="text-white">IS HERE.</span>
           </h2>
+          <a href="https://github.com/kens1ang/AIGuardian/tree/master" className="bg-orange-300 text-black px-4 py-4 rounded-sm hover:underline w-fit mt-10 font-neue-machina font-light justify-end">View on Github</a>
         </section>
 
         {/* Your main content */}
@@ -193,14 +194,14 @@ const LandingPage = () => {
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>MetaMask Not Connected</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="font-neue-machina">MetaMask Not Connected</DialogTitle>
+            <DialogDescription className="font-neue-machina font-light">
               Please connect MetaMask to access the demo.
             </DialogDescription>
           </DialogHeader>
           <Button
             onClick={() => setIsDialogOpen(false)}
-            className="bg-orange-300 text-black mt-4"
+            className="bg-orange-300 text-black mt-4 hover:font-bold hover:bg-orange-400T font-neue-machina font-light"
           >
             Close
           </Button>
