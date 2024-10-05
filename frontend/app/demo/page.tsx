@@ -669,7 +669,7 @@ export default function Home() {
             tweets.map((tweet, index) => (
               <div
                 key={index}
-                className="bg-black border-b-2 border-gray-700 shadow-md w-full"
+                className="bg-black border-b-2 border-gray-700 shadow-md max-w-[750px]"
               >
                 <div className="flex items-center p-4">
                   <div className="w-12 h-12 rounded-full p-[2px] bg-gradient-to-r from-indigo-500 via-pink-300 to-orange-300">

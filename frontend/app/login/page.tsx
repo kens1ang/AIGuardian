@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation"; // Import the useRouter for navigat
 
 export default function Login() {
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Track loading state
   const { data: session } = useSession(); // Access session data
   const router = useRouter(); // Initialize Next.js router
 
@@ -44,8 +45,15 @@ export default function Login() {
     const worldId = sessionStorage.getItem("worldId");
     if (worldId) {
       router.push("/demo"); // Navigate to /demo if worldId exists
+    } else {
+      setLoading(false); // Set loading state to false
     }
   }, [router]); // Trigger on router changes
+
+  // Only render login page if not loading (i.e., no worldId found)
+  if (loading) {
+    return null; // This prevents the login page from rendering if still checking
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black">
@@ -66,7 +74,7 @@ export default function Login() {
           <h1 className="text-center text-7xl font-extrabold mb-8 font-neue-machina" >
             Happening now
           </h1>
-          <p className="text-4xl font-bold mb-12 font-neue-machina font-light">
+          <p className="text-4xl mb-12 font-neue-machina font-light">
             Join today.
           </p>
 
