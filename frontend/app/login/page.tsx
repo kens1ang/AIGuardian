@@ -74,7 +74,7 @@ export default function Login() {
           <h1 className="text-center text-7xl font-extrabold mb-8 font-neue-machina" >
             Happening now
           </h1>
-          <p className="text-4xl font-bold mb-12 font-neue-machina font-light">
+          <p className="text-4xl mb-12 font-neue-machina font-light">
             Join today.
           </p>
 
