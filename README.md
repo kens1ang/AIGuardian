@@ -61,12 +61,12 @@ This project uses cutting-edge blockchain and AI technology to detect deepfake i
 
 ## Smart Contract Addresses:
 
-### Manta Sepolia Testnet:
+### Scroll Sepolia Testnet:
 - [originality.sol](https://sepolia.etherscan.io/address/0x05c1D57282642379b2cc0349846285A248984196): `0x05c1D57282642379b2cc0349846285A248984196`
 - [deepfakestorage.sol](https://sepolia.etherscan.io/address/0x385815Ca79ed0A954c0277d2651CcED5f2Fb40C6): `0x385815Ca79ed0A954c0277d2651CcED5f2Fb40C6`
 - [twitterpost.sol](https://sepolia.etherscan.io/address/0x89Ac93592b0A9E98F7F297B7960314d92b50FbA6): `0x89Ac93592b0A9E98F7F297B7960314d92b50FbA6`
 
-### Scroll Sepolia Testnet:
+### Manta Sepolia Testnet:
 - [originality.sol](https://sepolia.etherscan.io/address/0x079CF630a623Bc12E4451ACe7cdD72F49B6977F3): `0x079CF630a623Bc12E4451ACe7cdD72F49B6977F3`
 - [deepfakestorage.sol](https://sepolia.etherscan.io/address/0x2a662D2Fa3553C2849151b44Ea3fe2Ec3579f1f7): `0x2a662D2Fa3553C2849151b44Ea3fe2Ec3579f1f7`
 - [twitterpost.sol](https://sepolia.etherscan.io/address/0x69668FF363fFA1D0832654748158165a0cD42615): `0x69668FF363fFA1D0832654748158165a0cD42615`
