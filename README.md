@@ -60,9 +60,12 @@ This project uses cutting-edge blockchain and AI technology to detect deepfake i
 - Blockchain Frameworks: Thirdweb, Web3.js, Ethers.js
 - Networks: Scroll Sepolia Testnet, Manta Sepolia Testnet
 
-### On-Chain AI & Decentralization
-- AI Model: Custom-built deepfake detection algorithm, trained and deployed on the Internet Computer Protocol (ICP).
-- Storage: IPFS (InterPlanetary File System) for decentralized storage of images and related metadata.
+### On-Chain AI
+- Pre-trained mobilenet_v2 deepfake detection algorithm, trained on Kaggle dataset.
+- Deployed on the Internet Computer Protocol (ICP) canisters, written in Rust programming language (refer below for ICP canisters address).
+
+### Storage
+- IPFS (InterPlanetary File System) for decentralized storage of images and related metadata.
 
 ## Smart Contract Addresses:
 
@@ -70,7 +73,6 @@ This project uses cutting-edge blockchain and AI technology to detect deepfake i
 - [originality.sol](https://sepolia.scrollscan.com/address/0x109e8B75b04919Cb2838691C1a06Eed403FBc40b): `0x109e8B75b04919Cb2838691C1a06Eed403FBc40b` Verified ✅
 - [deepfakestorage.sol](https://sepolia.scrollscan.com/address/0x0521D794F9bdeEdE71D2B6EF749da7d393a9a7aB): `0x0521D794F9bdeEdE71D2B6EF749da7d393a9a7aB` Verified ✅
 - [twitterpost.sol](https://sepolia.scrollscan.com/address/0x21270553C12c14E4B96138Cd31eB09176F12F2ce): `0x21270553C12c14E4B96138Cd31eB09176F12F2ce` Verified ✅
-
 
 ### Manta Sepolia Testnet:
 - [originality.sol](https://manta-sepolia.explorer.caldera.xyz/address/0x079CF630a623Bc12E4451ACe7cdD72F49B6977F3): `0x079CF630a623Bc12E4451ACe7cdD72F49B6977F3`
@@ -96,5 +98,7 @@ This project uses cutting-edge blockchain and AI technology to detect deepfake i
 - Stores the image hash along with its originality status to verify that the image is first posted by the creator. The _originality parameter is a boolean indicating whether the image is original (true) or not (false).
 - Retrieves the originality status (true or false) for a given image hash.
 
+## Links
 
-
+1. AIGuardian landing page: https://ai-guardian.vercel.app/
+2. Deepfake detection ICP frontend canisters: https://cqqh4-4yaaa-aaaah-qds4a-cai.icp0.io/
