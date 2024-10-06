@@ -83,8 +83,8 @@ export default function Home() {
   const imageOptions = [
     { name: "obama1.png", path: "/assets/obama1.png" },
     { name: "obama2.png", path: "/assets/obama2.png" },
-    { name: "realImage2.jpg", path: "/assets/no-likes.png" },
-    { name: "fakeImage2.jpg", path: "/assets/no-media.png" },
+    { name: "fake1.jpg", path: "/assets/images/fake1.jpg" },
+    { name: "worldcoin.jpg", path: "/assets/images/real1.png" },
   ];
 
   const checkDeepfake: (
@@ -117,7 +117,6 @@ export default function Home() {
   const fetchPosts = async () => {
     try {
       if (!signer) {
-        toast.error("Please connect your wallet.");
         return;
       }
 
@@ -266,7 +265,6 @@ export default function Home() {
   ) => {
     try {
       if (!signer) {
-        toast.error("Please connect your wallet first.");
         return;
       }
       const deepfakeContract = new Contract(
@@ -300,7 +298,6 @@ export default function Home() {
   ) => {
     try {
       if (!signer) {
-        toast.error("Please connect your wallet first.");
         return;
       }
 
@@ -341,7 +338,6 @@ export default function Home() {
   ): Promise<number | null> => {
     try {
       if (!signer) {
-        toast.error("Please connect your wallet first.");
         return null;
       }
 
@@ -447,7 +443,6 @@ export default function Home() {
   ) => {
     try {
       if (!signer) {
-        toast.error("Please connect your wallet first.");
         return;
       }
 
@@ -552,7 +547,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-nowrap">
       <LeftSidebar />
-
+      
       <div className="flex-grow">
         <div className="bg-black p-4 pt-0 border-y-2 border-gray-700 w-full">
           <div className="flex justify-between mt-4 mb-4">
