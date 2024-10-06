@@ -1,4 +1,4 @@
-export const originalityAddress = '0xd67a747D3bc32229375Cb17f5A6e24B1C3BF730a';
+export const originalityAddress = '0x37333d92b348E5F63D0eC6c51dC83716829b39b5';
 export const originalityABI = [
 	{
 		"anonymous": false,
