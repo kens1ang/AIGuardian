@@ -1,4 +1,4 @@
-export const tweeterpostAddress = '0x46c063338507c94271D4ded7d05f67fE655Df2c0';
+export const tweeterpostAddress = '0x6942b3d242AD714852753deB9e49945Bb56D888f';
 export const tweeterpostABI = [
 	{
 		"inputs": [],
