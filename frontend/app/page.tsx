@@ -15,7 +15,7 @@ import ActionSteps from "@/app/landing-components/ActionSteps";
 import TechStacks from "@/app/landing-components/TechStacks";
 import { ethers } from "ethers"; // Correct import for ethers
 import { useRouter } from "next/navigation"; // Next.js navigation
-import { Toaster } from "react-hot-toast"; 
+import { Toaster } from "react-hot-toast";
 
 type EthereumProvider = {
   isMetaMask?: boolean;
@@ -202,11 +202,13 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen min-w-screen">
       <Toaster />
       <header className="px-4 py-6 border-b-2 border-dashed border-gray-400 sticky top-0 bg-black">
-        <nav className="flex justify-between items-center max-w-[1700px] mx-auto">
-          <h1 className="text-3xl font-light font-neue-machina">AIGuardian</h1>
+        <nav className="flex sm:flex-row flex-col gap-y-3 sm:justify-between sm:items-center w-full">
+          <h1 className="text-2xl md:text-3xl font-light font-neue-machina">
+            AIGuardian
+          </h1>
           <div className="space-x-16 font-neue-machina font-light">
             <a href="#how" className="hover:text-gray-300">
               How it Works
@@ -221,7 +223,7 @@ const LandingPage = () => {
           </div>
           <div>
             <Button
-              className="bg-orange-300 text-black hover:bg-orange-300 text-xl px-8 py-6 rounded-sm font-neue-machina"
+              className="bg-orange-300 text-black hover:bg-orange-300 text-base md:text-xl md:px-8 md:py-6 px-6 py-4 w-full sm:w-[170px]rounded-sm font-neue-machina"
               onClick={connectWallet} // Connect wallet when the button is clicked
             >
               {address
@@ -232,22 +234,22 @@ const LandingPage = () => {
         </nav>
       </header>
 
-      <main>
+      <main className="w-screen">
         {/* Sections */}
         <section className="text-left py-24 max-w-[1700px] mx-auto sm:px-10 border-b-2 border-gray-400 border-dashed">
-          <h2 className="text-9xl font-light mb-4 font-neue-machina leading-tight tracking-tight uppercase">
+          <h2 className="text-6xl sm:text-8xl md:text-9xl font-light mb-4 font-neue-machina leading-tight tracking-tight uppercase px-8 sm:px-0">
             un-deepfake you.
           </h2>
-          <h2 className="text-9xl font-light mb-12 font-neue-machina leading-tight">
-            <span className="bg-gradient-to-r from-indigo-500 via-pink-300 to-orange-300 text-transparent bg-clip-text">
+          <h2 className="text-6xl sm:text-8xl md:text-9xl font-light mb-12 font-neue-machina leading-tight px-8 sm:px-0" >
+            <span className="bg-gradient-to-r from-indigo-500 via-pink-300 to-orange-300 text-transparent bg-clip-text ">
               AI GUARDIAN
             </span>
             <br />
-            <span className="text-white">IS HERE.</span>
+            <span className="text-white ">IS HERE.</span>
           </h2>
           <a
             href="https://github.com/kens1ang/AIGuardian/tree/master"
-            className="bg-orange-300 text-black px-4 py-4 rounded-sm hover:underline w-fit mt-10 font-neue-machina font-light justify-end"
+            className="bg-orange-300 text-black px-4 py-4 rounded-sm hover:underline w-fit mt-10 font-neue-machina font-light justify-end ml-8 sm:ml-0"
           >
             View on Github
           </a>
@@ -257,13 +259,13 @@ const LandingPage = () => {
         <section className="py-20 max-w-5xl mx-auto">
           <TechStacks />
         </section>
-        <section className="py-20 max-w-6xl mx-auto">
+        <section className="py-20 max-w-6xl mx-auto md:pr-14">
           <AIEngineSection />
         </section>
         <section className="py-20 max-w-7xl mx-auto">
           <MonitoringSection />
         </section>
-        <section className="py-20 max-w-6xl mx-auto" id="how">
+        <section className="py-20 max-w-6xl px-11 md:py-0 mx-auto" id="how">
           <ActionSteps />
         </section>
       </main>
