@@ -83,8 +83,8 @@ export default function Home() {
   const imageOptions = [
     { name: "obama1.png", path: "/assets/obama1.png" },
     { name: "obama2.png", path: "/assets/obama2.png" },
-    { name: "fake1.jpg", path: "/assets/images/fake1.jpg" },
-    { name: "worldcoin.jpg", path: "/assets/images/real1.png" },
+    { name: "fake1.png", path: "/assets/images/fake1.png" },
+    { name: "real1.png", path: "/assets/images/real1.png" },
   ];
 
   const checkDeepfake: (
