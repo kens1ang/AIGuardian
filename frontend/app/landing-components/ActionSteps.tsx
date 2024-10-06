@@ -79,7 +79,9 @@ const ActionSteps = () => {
           {/* Add your code visualization component here */}
           <div className="bg-gray-800 p-4 rounded-lg">
             {/* Placeholder for code visualization */}
-            <div className="h-64 bg-gray-700 rounded-lg"></div>
+            <div className="h-64 bg-gray-700 rounded-lg">
+                <img src="/assets/images/blockchain.png" alt="Blockchain" className="w-full h-full object-cover p-4" />
+            </div>
           </div>
         </div>
       </div>
@@ -104,7 +106,9 @@ const ActionSteps = () => {
           {/* Add your code visualization component here */}
           <div className="bg-gray-800 p-4 rounded-lg">
             {/* Placeholder for code visualization */}
-            <div className="h-64 bg-gray-700 rounded-lg"></div>
+            <div className="h-64 bg-gray-700 rounded-lg">
+                <img src="/assets/images/rust.png" alt="AI" className="w-full h-full object-cover p-4" />
+            </div>
           </div>
         </div>
       </div>
